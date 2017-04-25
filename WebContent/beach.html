@@ -4,8 +4,12 @@
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
 
+<!-- jQuery -->
+<script src="bootstrap/js/jquery.js"></script>
 <!-- Bootstrap Core CSS -->
 <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<!-- Bootstrap Core JavaScript -->
+<script src="bootstrap/js/bootstrap.min.js"></script>
 
 <!-- jQuery -->
 <script src="bootstrap/js/jquery.js"></script>
@@ -26,6 +30,8 @@
 	var div;
 	var righe = 5;
 	var colonne = 20;
+	var image;
+	var container = new createjs.Container();
 
 	window.addEventListener('resize', resize, false);
 
@@ -33,8 +39,9 @@
 		stage.update();
 	}
 
-
 	function resize() {
+		div = document.getElementById("prova");
+		console.log(div.clientWidth);
 		stage.canvas.width = div.clientWidth;
 		stage.canvas.height = righe * (div.clientWidth / colonne);
 	}
@@ -42,20 +49,18 @@
 	function init() {
 		stage = new createjs.Stage("myCanvas");
 		stage.enableMouseOver(10);
-		div = document.getElementById("prova");
-		resize();
 
-		var image = new Image();
+		resize();
+		image = new Image();
 		image.src = "media/umbrella.png";
 		image.onload = handleImageLoad;
 	}
 
 	function handleImageLoad(event) {
-		var image = event.target;
+		image = event.target;
 		var bitmap;
 		var count = colonne * righe;
 		var label1;
-
 
 		for (i = 0; i < righe; i++) {
 			for (j = colonne; j > 0; j--) {
@@ -69,15 +74,13 @@
 				label1.y = i * (div.clientWidth / colonne) + 20;
 				bitmap.name = count;
 				count--;
-				/*bitmap.alpha = 0.5;*/
 
-				bitmap.on("click", function(evt) {
-					alert("Hai cliccato l'ombrellone numero: " + evt.target.name);
-				});
+
+				bitmap.on("click", clickEvent);
 				bitmap.on("mouseover", handleInteraction);
 				bitmap.on("mouseout", handleInteraction);
 
-				stage.addChild(bitmap, label1);
+				container.addChild(bitmap);
 			/*
 			console.log(bitmap.getBounds());
 			console.log(bitmap.name);
@@ -86,49 +89,42 @@
 			*/
 			}
 		}
+		stage.addChild(container);
 		stage.update();
 		createjs.Ticker.addEventListener("tick", stage);
+
 	}
+
+	function clickEvent(event) {
+		apri2();
+
+	}
+
+
 	function handleInteraction(event) {
 		event.target.alpha = (event.type == "mouseover") ? 0.5 : 1;
 
 		event.target.scaleX = (event.type == "mouseover") ? (event.target.scaleX + 0.1) : (event.target.scaleX - 0.1);
 		event.target.scaleY = (event.type == "mouseover") ? (event.target.scaleY + 0.1) : (event.target.scaleY - 0.1);
+	}
 
 
+	function apri() {
+		$('.overlay').fadeIn("fast");
+	}
+	function apri2() {
+		$('#myModal').modal('toggle');             
+	}
+
+
+	function chiudi() {
+		$('.overlay').fadeOut("fast");
 	}
 </script>
 
-<script type="text/javascript">
-$(document).ready(function() {
-
-	$(".apri").click(
-	    function(){
-			$('#overlay').fadeIn('fast');
-			$('#box').fadeIn('slow');
-		});
-		
-		$(".chiudi").click(
-	    function(){
-		$('#overlay').fadeOut('fast');
-		$('#box').hide();
-		});
-		
-		//chiusura emergenza 
-		$("#overlay").click(
-	    function(){
-		$(this).fadeOut('fast');
-		$('#box').hide();
-		});
-		
-	
-        
-   });   
-</script>
 
 </head>
 <body onload="init()">
-
 	<!-- Navigation -->
 	<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
 		<div class="container">
@@ -159,31 +155,53 @@ $(document).ready(function() {
 
 
 	<!-- Page Content -->
-	<div class="container">
-		<div class="row">
-			<div class="col-xs-12" id="prova">
+	
+
+			<div id="prova">
 				<canvas id="myCanvas"></canvas>
 			</div>
-		</div>
-		<div class="row">
-			<div class="col-lg-12" id="info">
-				<h1>Ciao</h1>
+			<div class="overlay" style="display: none">
+				<div id=box>
+					<h1 id="chiudi" onclick="chiudi()" style="border-top: 100px">chiudi
+					</h1>
+				</div>
+			</div>
+		
+		<!-- Modal -->
+		<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+			aria-labelledby="myModalLabel">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal"
+							aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+						<h4 class="modal-title" id="myModalLabel">Modal title</h4>
+					</div>
+					<div class="modal-body">...</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+						<button type="button" class="btn btn-primary">Save
+							changes</button>
+					</div>
+				</div>
 			</div>
 		</div>
-	</div>
+
+
 	<!-- /.row -->
 
 
 	<!-- Footer -->
 	<footer>
-		<div class="row">
-			<div class="col-lg-12">
+		<div >
+			<div >
 				<p>Copyright &copy; Your Website 2014</p>
 			</div>
 		</div>
 		<!-- /.row -->
 	</footer>
-
 
 	<!-- /.container -->
 
@@ -199,7 +217,5 @@ $(document).ready(function() {
 <div class="apri"> >> APRI L'OVERLAY</div>
 
 
-	<!-- Bootstrap Core JavaScript -->
-	<script src="bootstrap/js/bootstrap.min.js"></script>
 </body>
 </html>
