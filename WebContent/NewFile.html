@@ -3,28 +3,17 @@
 <head>
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script>
-$(document).ready(function() {
-	nuovo_elemento = document.createElement("div");
-	nuovo_elemento.setAttribute("id","quadro"+parseInt(document.getElementById("container").childNodes.length+1));
-	nuovo_elemento.setAttribute("class","quadrato");
-	now= new Date();
-	nuovo_elemento.innerHTML=now.toLocaleString();
-	document.getElementById("container").appendChild(nuovo_elemento);
-	obj=eval("document.getElementById(\"quadro"+parseInt(document.getElementById("container").childNodes.length)+"\")");
-	obj.style.height="30px";
-	obj.style.width="700px";
-	obj.style.border="1px solid red";
-	obj.style.margin="0px";
-	   
-	});
+
 </script>
 </head>
-<style>
-	div.container{width: 700px; margin: 0px auto 0px;}
-	div.quadrato{border:1px solid red; height: 30px; width: 700px; margin: 0px;}
-</style>
+
 <body>
-<a href="#">crea elemento</a>
-<div class="container" id="container"/>
+
+<div id="test">
+	<form action="ConnectionToDB.php"> Ciao 
+		<button type="submit"> ciao</button>
+	</form>
+</div>
+
 </body>
 </html>
