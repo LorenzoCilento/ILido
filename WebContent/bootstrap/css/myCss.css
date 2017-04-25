@@ -1,11 +1,6 @@
-/*!
- * Start Bootstrap - 4 Col Portfolio (http://startbootstrap.com/)
- * Copyright 2013-2016 Start Bootstrap
- * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap/blob/gh-pages/LICENSE)
- */
-
 body {
-    padding-top: 70px; /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
+	padding-top: 70px;
+	/* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
 }
 
 #info {
@@ -13,8 +8,7 @@ body {
 }
 
 footer {
-    margin: 50px 0;
-	background: grey;
+	background: #969596;
 }
 
 h1 {
@@ -26,3 +20,22 @@ h1 {
 	border-color: gray;
 }
 
+
+html, body {
+	min-height: 100%;
+}
+
+body {
+	position: relative;
+}
+
+.overlay {
+	position: absolute;
+	top: 0;
+	left: 0;
+	padding: 100px 100px 100px 100px;
+	width: 100%;
+	height: 100%;
+	z-index: 10;
+	background-color: rgba(0, 0, 0, 0.5); /*dim the background*/
+}
