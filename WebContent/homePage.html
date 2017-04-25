@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+    <!-- Bootstrap Core CSS -->
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="css/homepage.css" rel="stylesheet">
+    
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+	<script src="https://code.createjs.com/easeljs-0.8.2.min.js"></script>
+	<script>
+	
+	window.addEventListener('resize', resize, false);
+	var stage;
+	function init(){
+		stage = new createjs.Stage("myCanvas");
+		var circle = new createjs.Shape();
+		circle.graphics.beginFill("DeepSkyBlue").drawCircle(0, 0, 50);
+		circle.x = 100;
+		circle.y = 100;
+		stage.addChild(circle);
+		createContent();
+		createjs.Ticker.addListener(this);
+		resize();
+	}
+	
+	 function tick() {
+		     stage.update();
+		   } 
+
+	
+	function resize() { 
+		    stage.canvas.width = window.innerWidth;
+		    stage.canvas.height = window.innerHeight;     
+		  }
+
+	function createContent() {
+
+		content = new createjs.Container();
+		stage.addChild(content);
+		
+		// Load the Monalisa Image
+		// (You may also use PreloadJS to avoid the onload listener)
+		monalisa = new Image();
+		monalisa.src = "beach1.jpg";
+		monalisa.onload = handleImageLoad;
+	}
+
+	function handleImageLoad() {
+
+		// Create a CreateJS bitmap from the loaded image
+		var bmpMonaLisa = new createjs.Bitmap(monalisa);
+
+		// Add the bitmap to the Container
+		content.addChild(bmpMonaLisa);
+
+		// Set the registration point of the Container
+		content.regX = bmpMonaLisa.image.width/2
+		content.regY = bmpMonaLisa.image.height/2
+
+		// Set the scale of the content.
+		// It's not necessary but it might be useful to properly handle different mobile resolutions resizing the content.
+		content.scaleX = 0.5;
+		content.scaleY = 0.5;
+
+	}
+	
+	</script>
+</head>
+<body onload="init();">
+
+	<nav class="navbar navbar-inverse">
+	  <div class="container-fluid">
+	    <div class="navbar-header">
+	      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>                        
+	      </button>
+	      <a class="navbar-brand" href="#">Logo</a>
+	    </div>
+	    <div class="collapse navbar-collapse" id="myNavbar">
+	      <ul class="nav navbar-nav">
+	        <li class="active"><a href="#">Home</a></li>
+	        <li><a href="#">About</a></li>
+	        <li><a href="#">Projects</a></li>
+	        <li><a href="#">Contact</a></li>
+	      </ul>
+	      <ul class="nav navbar-nav navbar-right">
+	        <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+	      </ul>
+	    </div>
+	  </div>
+	</nav>
+	  
+	<div class="container-fluid text-center">    
+	  <div class="row content">
+	    <div class="col-sm-2 sidenav">
+	      <p><a href="#">Link</a></p>
+	      <p><a href="#">Link</a></p>
+	      <p><a href="#">Link</a></p>
+	    </div>
+	    <div class="col-sm-8" id="test"> 
+	      <h1>Go To Your Beach!!!</h1>
+	      <!--<p> <img class="img-responsive" id="img-beach" alt="" src="media/beach2.jpg"> </p>  -->
+	      <hr>
+	      <div class="row" id="other-choice">
+	      	<div class="col-xs-3"><p><img class="img-responsive" alt="" src="media/clients.ico"></p></div>
+	      	<div class="col-xs-3"><p><img class="img-responsive" alt="" src="media/stats1.png"></p></div>
+	      </div>
+	    </div>
+	    <div class="col-sm-2 sidenav">
+	      <div class="well">
+	        <p>ADS</p>
+	      </div>
+	      <div class="well">
+	        <p>ADS</p>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+
+<div>
+<canvas id="myCanvas" height="10" width="10" style="border:1px solid #000000"> </canvas>
+</div>
+
+<footer class="container-fluid text-center">
+  <p>Footer Text</p>
+</footer>
+
+</body>
+</html>
+

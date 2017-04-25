@@ -1,0 +1,70 @@
+@CHARSET "ISO-8859-1";
+
+
+/* Remove the navbar's default margin-bottom and rounded borders */ 
+.navbar {
+  margin-bottom: 0;
+  border-radius: 0;
+}
+
+/* Set height of the grid so .sidenav can be 100% (adjust as needed) */
+.row.content {height: 450px}
+
+/* Set gray background color and 100% height */
+.sidenav {
+  padding-top: 20px;
+  background-color: #f1f1f1;
+  height: 100%;
+}
+
+/* Set black background color, white text and some padding */
+footer {
+  background-color: #555;
+  color: white;
+  padding: 15px;
+}
+
+/* On small screens, set height to 'auto' for sidenav and grid */
+@media screen and (max-width: 767px) {
+  .sidenav {
+    height: auto;
+    padding: 15px;
+  }
+  .row.content {height:auto;} 
+}
+
+#test{
+	width:50%;
+	heigh:50%;
+}
+
+#img-beach{
+	width: 70%;
+	padding-left: 10%; 
+}
+
+#other-choice > div{
+	width: 15%;
+}
+ 
+ 
+ 
+	.apri{ font-size:18px; font-family:Verdana, Geneva, sans-serif; float:right; margin-right:50px;}
+.chiudi{ font-size:18px; color:#000; font-weight:bold; position:absolute; right:2%; top:0%;  cursor:pointer;}
+.overlay{
+    background:#000;
+    position:fixed;
+    top:0px;
+    bottom:0px;
+    left:0px;
+    right:0px;
+    z-index:100;
+    cursor:pointer;
+/*Trasperenza cross browser*/
+opacity: .7; filter: alpha(opacity=70);
+-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=70)";   
+ 
+}
+ 
+#box{ width:600px; height:400px; background-color:#FFF; display:none; z-index:+300; position:absolute; left:30%; top:20%; -moz-border-radius: 15px;  -webkit-border-radius: 15px;
+border-radius: 15px;}
